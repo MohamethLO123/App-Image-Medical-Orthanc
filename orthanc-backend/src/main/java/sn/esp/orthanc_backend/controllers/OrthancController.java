@@ -37,6 +37,5 @@ public class OrthancController {
         return orthancService.getSeriesInstances(id);
     }
 
-
 }
 
