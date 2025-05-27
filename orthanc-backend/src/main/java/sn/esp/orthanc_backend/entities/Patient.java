@@ -13,10 +13,12 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String patientId; // <--- utilisé pour faire le lien avec Orthanc
+    private String patientId; 
     private String nom;
     private String prenom;
     private String sexe;
     private LocalDate dateNaissance;
+    private String adresse;
+    private String telephone;
 }
 

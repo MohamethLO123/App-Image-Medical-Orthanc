@@ -20,7 +20,7 @@ public class PatientService {
 
     public Patient createOrUpdateFromDicomTag(Map<String, Object> dicomTags) {
         String patientId = (String) dicomTags.get("PatientID");
-        String patientName = (String) dicomTags.get("PatientName"); // format : NOM^PRENOM
+        String patientName = (String) dicomTags.get("PatientName"); 
         String sexe = (String) dicomTags.get("PatientSex");
         String birthDate = (String) dicomTags.get("PatientBirthDate");
 
@@ -37,7 +37,7 @@ public class PatientService {
                 p.setNom(nom); p.setPrenom(prenom); p.setDateNaissance(dateNaissance); p.setSexe(sexe);
                 return patientRepository.save(p);
             })
-            .orElseGet(() -> patientRepository.save(new Patient(null, patientId, nom, prenom, sexe, dateNaissance)));
+            .orElseGet(() -> patientRepository.save(new Patient(null, patientId, nom, prenom, sexe, dateNaissance, null, null)));
     }
 
     public Optional<Patient> findByPatientId(String patientId) {
@@ -48,7 +48,18 @@ public class PatientService {
         return patientRepository.findAll();
     }
 
+    public String generatePatientId() {
+        long count = patientRepository.count() + 1;
+        return String.format("P%05d", count); // Ex : P00001
+    }
+
+
     public Patient save(Patient patient) {
+        if (patient.getPatientId() == null || patient.getPatientId().isEmpty()) {
+            String generatedId = generatePatientId();
+            patient.setPatientId(generatedId);
+        }
         return patientRepository.save(patient);
     }
+
 }

@@ -1,19 +1,21 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import PatientsList from './pages/PatientsList';
-// Tu ajouteras d'autres pages ici plus tard
+import AddPatient from './pages/AddPatient';
+import PatientDetails from './pages/PatientDetails';
+
+
 
 function App() {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<PatientsList />} />
-          {/* <Route path="/add" element={<AddPatient />} /> */}
-          {/* <Route path="/orthanc" element={<OrthancStudies />} /> */}
-        </Routes>
-      </Layout>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<PatientsList />} />
+          <Route path="add" element={<AddPatient />} />
+          <Route path="patients/:id" element={<PatientDetails />} />
+        </Route>
+      </Routes>
     </Router>
   );
 }
