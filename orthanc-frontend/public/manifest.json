@@ -1,0 +1,9 @@
+{
+  "short_name": "OrthancApp",
+  "name": "Orthanc Frontend App",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#198754",
+  "icons": []
+}

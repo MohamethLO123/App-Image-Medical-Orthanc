@@ -8,9 +8,16 @@ export default function PatientsList() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    api.get('/patients')
-      .then(res => setPatients(res.data))
-      .catch(err => console.error(err));
+    const token = localStorage.getItem('token');
+    if (!token) return;
+
+    api.get('/patients', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(res => setPatients(res.data))
+    .catch(err => console.error('Erreur de récupération des patients :', err));
   }, []);
 
   const filteredPatients = patients
@@ -56,23 +63,32 @@ export default function PatientsList() {
               </tr>
             </thead>
             <tbody>
-              {filteredPatients.map((p, index) => (
-                <tr key={index}>
-                  <td>{p.patientId}</td>
-                  <td>{p.nom}</td>
-                  <td>{p.prenom}</td>
-                  <td>{p.sexe}</td>
-                  <td>{p.dateNaissance}</td>
-                  <td>{p.adresse}</td>
-                  <td>{p.telephone}</td>
-                  <td className="text-center">
-                    <button className="btn btn-outline-success btn-sm" onClick={() => handleView(p.id)}>
-                      <i className="fas fa-eye"></i>
-                    </button>
+              {filteredPatients.length === 0 ? (
+                <tr>
+                  <td colSpan="8" className="text-center text-muted">
+                    Aucun patient trouvé.
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filteredPatients.map((p, index) => (
+                  <tr key={index}>
+                    <td>{p.patientId}</td>
+                    <td>{p.nom}</td>
+                    <td>{p.prenom}</td>
+                    <td>{p.sexe}</td>
+                    <td>{p.dateNaissance}</td>
+                    <td>{p.adresse}</td>
+                    <td>{p.telephone}</td>
+                    <td className="text-center">
+                      <button className="btn btn-outline-success btn-sm" onClick={() => handleView(p.id)}>
+                        <i className="fas fa-eye"></i>
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
+
           </table>
         </div>
       </div>

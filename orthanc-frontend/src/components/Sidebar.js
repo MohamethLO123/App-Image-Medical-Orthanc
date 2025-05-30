@@ -11,6 +11,22 @@ export default function Sidebar() {
       <div className="sidebar">
         <nav className="mt-2">
           <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview">
+
+            <li className="nav-item">
+              <Link to="/utilisateurs" className="nav-link">
+                <i className="nav-icon fas fa-users-cog"></i>
+                <p>Liste des utilisateurs</p>
+              </Link>
+            </li>
+
+
+            <li className="nav-item">
+              <Link to="/utilisateurs/add" className="nav-link">
+                <i className="nav-icon fas fa-user-plus"></i>
+                <p>Ajouter un utilisateur</p>
+              </Link>
+            </li>
+
             <li className="nav-item">
               <Link to="/" className="nav-link">
                 <i className="nav-icon fas fa-users"></i>
@@ -23,6 +39,19 @@ export default function Sidebar() {
                 <p>Ajouter un patient</p>
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/hopitaux/add" className="nav-link">
+                <i className="nav-icon fas fa-hospital"></i>
+                <p>Ajouter un hôpital</p>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/roles/add" className="nav-link">
+                <i className="nav-icon fas fa-user-shield"></i>
+                <p>Ajouter un rôle</p>
+              </Link>
+            </li>
+
             <li className="nav-item">
               <Link to="/orthanc" className="nav-link">
                 <i className="nav-icon fas fa-x-ray"></i>

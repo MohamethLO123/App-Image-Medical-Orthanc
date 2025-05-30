@@ -1,4 +1,3 @@
-// src/pages/AddPatient.js
 import React, { useState } from 'react';
 import { api } from '../services/api';
 import { useNavigate } from 'react-router-dom';
@@ -21,8 +20,15 @@ export default function AddPatient() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('token');
+
     try {
-      await api.post('/patients', patient);
+      await api.post('/patients', patient, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
       Swal.fire({
         icon: 'success',
         title: 'Succès',
