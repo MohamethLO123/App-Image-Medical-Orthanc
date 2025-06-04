@@ -37,7 +37,7 @@ public class PatientService {
                 p.setNom(nom); p.setPrenom(prenom); p.setDateNaissance(dateNaissance); p.setSexe(sexe);
                 return patientRepository.save(p);
             })
-            .orElseGet(() -> patientRepository.save(new Patient(null, patientId, nom, prenom, sexe, dateNaissance, null, null)));
+            .orElseGet(() -> patientRepository.save(new Patient(null, patientId, nom, prenom, sexe, dateNaissance, null, null, null)));
     }
 
     public Optional<Patient> findByPatientId(String patientId) {

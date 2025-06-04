@@ -3,6 +3,9 @@ package sn.esp.orthanc_backend.entities;
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.*;
 
 @Entity
@@ -20,8 +23,10 @@ public class Utilisateur {
     private String telephone;
 
     @ManyToOne
+    @JoinColumn(name = "hopital_id")
+    @JsonManagedReference // Permet d'inclure l'hôpital dans la réponse JSON
     private Hopital hopital;
-    
+       
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "utilisateur_roles",

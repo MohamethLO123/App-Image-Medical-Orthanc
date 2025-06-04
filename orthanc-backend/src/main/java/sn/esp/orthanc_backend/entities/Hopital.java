@@ -1,5 +1,9 @@
 package sn.esp.orthanc_backend.entities;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,5 +17,10 @@ public class Hopital {
 
     private String nom;
     private String adresse;
+
+    @OneToMany(mappedBy = "hopital")
+    @JsonIgnore // ou @JsonBackReference
+    private List<Utilisateur> utilisateurs;
+
 }
 
