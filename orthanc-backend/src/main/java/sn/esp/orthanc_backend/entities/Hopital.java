@@ -2,7 +2,7 @@ package sn.esp.orthanc_backend.entities;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -19,7 +19,7 @@ public class Hopital {
     private String adresse;
 
     @OneToMany(mappedBy = "hopital")
-    @JsonIgnore // ou @JsonBackReference
+    @JsonBackReference
     private List<Utilisateur> utilisateurs;
 
 }

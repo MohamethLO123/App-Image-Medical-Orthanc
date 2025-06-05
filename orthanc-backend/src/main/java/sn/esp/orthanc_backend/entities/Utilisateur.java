@@ -1,12 +1,13 @@
 package sn.esp.orthanc_backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.Data;
+
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import lombok.*;
 
 @Entity
 @Data
@@ -24,9 +25,9 @@ public class Utilisateur {
 
     @ManyToOne
     @JoinColumn(name = "hopital_id")
-    @JsonManagedReference // Permet d'inclure l'hôpital dans la réponse JSON
+    @JsonIgnoreProperties({"utilisateurs", "consultations"}) // évite la boucle JSON
     private Hopital hopital;
-       
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "utilisateur_roles",
@@ -34,5 +35,9 @@ public class Utilisateur {
         inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
-}
 
+    @OneToMany(mappedBy = "medecin")
+    @JsonIgnore
+    private List<Consultation> consultations;
+
+}

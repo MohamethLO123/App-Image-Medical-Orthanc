@@ -2,6 +2,8 @@ package sn.esp.orthanc_backend.entities;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,5 +29,13 @@ public class Consultation {
     @JoinColumn(name = "dossier_id")
     private DossierMedical dossier;
 
+    @ManyToOne
+    @JsonIgnoreProperties({"consultations", "roles", "motDePasse"})
+    private Utilisateur medecin;
+
+    @ManyToOne
+    @JsonIgnoreProperties({"utilisateurs", "consultations"})
+    private Hopital hopital;
 }
+
 

@@ -191,8 +191,8 @@ export default function PatientDetails() {
               {dossiers.map((d, i) => (
                 <li key={i} className={`list-group-item ${dossierSelectionne === d.id ? 'active' : ''}`}
                   style={{ cursor: 'pointer' }} onClick={() => handleSelectDossier(d.id)}>
-                  <strong>{d.dateConsultation}</strong><br />{d.motif}<br />
-                  <small className="text-muted">Hôpital : {d.hopital?.nom || 'N/A'}</small>
+                  <strong>Hôpital : </strong>{d.hopital?.nom || 'N/A'}<br /><strong>Motif : </strong>{d.motif}<br />
+                  <strong>Date de creation : </strong>{d.dateConsultation}
                 </li>
               ))}
             </ul>
@@ -201,8 +201,8 @@ export default function PatientDetails() {
       </div>
 
       <div className="col-md-6">
-        <div className="card border-primary mt-4">
-          <div className="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <div className="card border-success mt-4">
+          <div className="card-header bg-success text-white d-flex justify-content-between align-items-center">
             <h5><i className="fas fa-stethoscope me-2"></i>Consultations</h5>
             {dossierSelectionne && (
               <button className="btn btn-sm btn-light" onClick={() => setShowConsultationForm(prev => !prev)}>
@@ -245,7 +245,7 @@ export default function PatientDetails() {
                       </div>
 
                       <button
-                        className="btn btn-outline-primary btn-sm"
+                        className="btn btn-outline-success btn-sm"
                         title="Voir détails"
                         onClick={() => navigate(`/consultations/${c.id}`)}
                       >
