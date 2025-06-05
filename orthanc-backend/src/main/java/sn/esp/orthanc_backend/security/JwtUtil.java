@@ -13,7 +13,7 @@ import java.util.Date;
 public class JwtUtil {
 
     private static final String SECRET_KEY = "qJZl8!a#hF@2k9PmC7vXrLpAqTgNsYeB"; // 32+ caractères = 256 bits
-    private static final long EXPIRATION_TIME = 1000 * 60 * 60 * 10; // 10h
+    private static final long EXPIRATION_TIME = 1000 * 60 * 60 * 2; // 10h
 
     private Key getSigningKey() {
         return Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));

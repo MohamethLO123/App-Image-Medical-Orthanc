@@ -10,6 +10,7 @@ import AddUtilisateur from './pages/AddUtilisateur';
 import UsersList from './pages/UsersList';
 import EditUtilisateur from './pages/EditUtilisateur';
 import PrivateRoute from './components/PrivateRoute';
+import ConsultationDetails from './pages/ConsultationDetails';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="utilisateurs" element={<UsersList />} />
           <Route path="utilisateurs/add" element={<AddUtilisateur />} />
           <Route path="utilisateurs/:id" element={<EditUtilisateur />} />
+          <Route path="consultations/:id" element={<ConsultationDetails />} />
         </Route>
       </Routes>
     </Router>

@@ -1,6 +1,9 @@
 package sn.esp.orthanc_backend.entities;
 
-import jakarta.persistence.Entity;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,5 +28,11 @@ public class DossierMedical {
     @ManyToOne
     @JoinColumn(name = "hopital_id")
     private Hopital hopital;
+
+    @OneToMany(mappedBy = "dossier", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Consultation> consultations;
+
+
 }
 
